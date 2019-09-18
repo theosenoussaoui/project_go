@@ -1,18 +1,34 @@
-# go-docker-compose
+## VueJS - Golang - PostgreSQL
 
-Example application demonstrating how to use Docker compose with Go applications. The repository contains a simple application written in Golang that contains a single API to display the "Quote of the day".
-
-The app fetches the quote of the day from a public API hosted at `http://quotes.rest/`, then it caches the result in Redis. For subsequent API calls, the app will return the result from Redis cache instead of fetching it from the public API.
-
-Clone the repository and type the following command to start the app -
+There are the commands to setup your environment efficiently :
 
 ```bash
-$ docker-compose up
+make install
 ```
+And if you didn't uncomment the VueJS setup in the `docker-compose.yml`, you can execute the following command (requires yarn to be installed) to run your front on [localhost:8081](http://localhost:8081) : 
 
 ```bash
-$ curl http://localhost:8080/qod
-If I work as hard as I can, I wonder how much I can do in a day?
+cd front && yarn serve
 ```
 
-Read the Tutorial: [Docker Compose: Defining and running multi-container docker applications](http://localhost:1313/docker-compose-multi-container-orchestration-golang/)
+The VueJS container in the `docker-compose.yml` is commented because Docker's performance on MacOS sucks ass. Uncomment it if you want.
+
+You can check the backend condition on [localhost:8080/ping](http://localhost:8080/ping) (it's running the Gonic main example.
+ 
+
+###If you want to install a Golang extension : 
+
+Install Golang locally first and install your extension using its own documentation.
+After that, rebuild your backend using :
+
+```bash
+make up
+```
+
+###If you changed your code in the back folder (app.go) :
+
+You have to rebuild your code (until and if I find a way to get some kind of hot reloading to work) by executing the command : 
+
+```bash
+make up
+```
