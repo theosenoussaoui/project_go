@@ -24,15 +24,15 @@ services:
             - POSTGRES_PASSWORD=s3cr3t
         networks: 
             - backend
-    front:
-        container_name: vuejs-front
-        image: node:10-alpine
-        working_dir: /home/myproject/front
-        volumes:
-            - ./front:/home/myproject/front
-        ports:
-            - "8080:8080"
-        command: ["yarn", "serve"]
+    # front:
+    #     container_name: vuejs-front
+    #     image: node:10-alpine
+    #     working_dir: /home/myproject/front
+    #     volumes:
+    #         - ./front:/home/myproject/front
+    #     ports:
+    #         - "8080:8080"
+    #     command: ["yarn", "serve"]
           
 networks:
     backend:

@@ -1,14 +1,14 @@
-up:
-	docker-compose up -d --build
+install: clean-front up 
+
+front:
+	cd front && \
+	yarn install
 
 down:
 	docker-compose down
 
-run:
-	docker-compose up --build
-
-install:
-	cd front && npm install
+up:
+	docker-compose up -d --build
 
 clean-front:
 	cd front && \
