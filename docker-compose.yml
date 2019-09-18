@@ -6,15 +6,12 @@ services:
             context: ./back/
             dockerfile: Dockerfile
         ports:
-            - "8080:8080"
+            - "8081:8081"
         restart: unless-stopped
         depends_on:
             - db
-        environment:
-            REDIS_URL: redis:6379
         networks:
             - backend
-
     db:
         image: postgres:11
         volumes:
@@ -27,7 +24,15 @@ services:
             - POSTGRES_PASSWORD=s3cr3t
         networks: 
             - backend
-
+    front:
+        container_name: vuejs-front
+        image: node:10-alpine
+        working_dir: /home/myproject/front
+        volumes:
+            - ./front:/home/myproject/front
+        ports:
+            - "8080:8080"
+        command: ["yarn", "serve"]
           
 networks:
     backend:
