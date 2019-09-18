@@ -13,10 +13,10 @@ cd front && yarn serve
 
 The VueJS container in the `docker-compose.yml` is commented because Docker's performance on MacOS sucks ass. Uncomment it if you want.
 
-You can check the backend condition on [localhost:8080/ping](http://localhost:8080/ping) (it's running the Gonic main example.
+You can check the backend condition on [localhost:8080/ping](http://localhost:8080/ping) (it's running the Gonic main example).
  
 
-###If you want to install a Golang extension : 
+### If you want to install a Golang extension : 
 
 Install Golang locally first and install your extension using its own documentation.
 After that, rebuild your backend using :
@@ -25,7 +25,7 @@ After that, rebuild your backend using :
 make up
 ```
 
-###If you changed your code in the back folder (app.go) :
+### If you changed your code in the back folder (app.go) :
 
 You have to rebuild your code (until and if I find a way to get some kind of hot reloading to work) by executing the command : 
 
