@@ -1,0 +1,4 @@
+vendor/
+vendor-*
+db-data/
+front/node_modules/
