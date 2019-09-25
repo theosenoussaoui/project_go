@@ -1,6 +1,8 @@
 package model
 
 import (
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"encoding/json"
 	"errors"
 	"time"
@@ -8,6 +10,7 @@ import (
 )
 
 type User struct {
+	gorm.Model
 	Id        	int    		`json:id`
 	FirstName 	string 		`json:"first_name"`
 	LastName  	string 		`json:"last_name"`
