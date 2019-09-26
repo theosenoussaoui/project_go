@@ -32,41 +32,13 @@ func main() {
 		})
 	})
 
-	r.POST("/users", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "POST users",
-		})
-	})
+	r.POST("/users", UserController.CreateUser)
+	r.PUT("/users/:uuid", UserController.UpdateUser)
+	r.DELETE("/users/:uuid", UserController.DeleteUser)
 
-	r.PUT("/users/:uuid", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "PUT users",
-		})
-	})
-
-	r.DELETE("/users/:uuid", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "DELETE users",
-		})
-	})
-
-	r.POST("/votes", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "POST votes",
-		})
-	})
-
-	r.GET("/votes/:uuid", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "GET votes",
-		})
-	})
-
-	r.PUT("/votes/:uuid", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "PUT votes",
-		})
-	})
+	r.POST("/votes", VoteController.CreateVote)
+	r.GET("/votes/:uuid", VoteController.GetVote)
+	r.PUT("/votes/:uuid", VoteController.UpdateVote)
 
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
