@@ -8,12 +8,8 @@ FROM golang:1.13-alpine
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 
-# Add Maintainer Info
-LABEL maintainer="Théo Senoussaoui <theosen95@gmail.com>"
-
 # Set the Current Working Directory inside the container
-WORKDIR /app
-
+WORKDIR /go/src/github.com/theosenoussaoui/project_go/back/
 # Copy go mod and sum files
 COPY go.mod go.sum ./
 
