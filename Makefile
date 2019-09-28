@@ -12,6 +12,6 @@ up:
 
 clean-front:
 	cd front && \
-	rm yarn.lock && \
+	rm -f yarn.lock && \
 	rm -rf node_modules && \
 	yarn install
