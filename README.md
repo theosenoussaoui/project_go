@@ -5,8 +5,7 @@
 - [x] Fully commented functions.
 - [ ] Tests on all functions.
 - [ ] Voting system.
-- [ ] Deleting and modifying users.
-
+- [ ] DELETE and PUT methods for users.
 
 There are the commands to setup your environment efficiently :
 
