@@ -2,6 +2,7 @@ module github.com/theosenoussaoui/project_go/back
 
 require (
 	github.com/appleboy/gin-jwt/v2 v2.6.2
+	github.com/asaskevich/govalidator v0.0.0-20190424111038-f61b66f89f4a // indirect
 	github.com/gin-gonic/gin v1.4.0
 	github.com/gorilla/mux v1.7.2
 	github.com/jinzhu/gorm v1.9.10

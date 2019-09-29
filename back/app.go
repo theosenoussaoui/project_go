@@ -24,7 +24,7 @@ func main() {
 		log.Fatal("JWT Error:" + err.Error())
 	}
 
-	// route.POST("/login", authMiddleware.LoginHandler)
+	route.POST("/login", authMiddleware.LoginHandler)
 
 	// Manage protected routes
 	route.Use(authMiddleware.MiddlewareFunc())
