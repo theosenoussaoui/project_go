@@ -9,7 +9,8 @@ RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 
 # Set the Current Working Directory inside the container
-WORKDIR /go/src/github.com/theosenoussaoui/project_go/back/
+WORKDIR /go/src/github.com/theosenoussaoui/project_go/back
+
 # Copy go mod and sum files
 COPY go.mod go.sum ./
 
