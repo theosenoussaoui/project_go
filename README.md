@@ -1,5 +1,13 @@
 ## VueJS - Golang - PostgreSQL
 
+- [x] Valid Dockerfiles / Docker-Compose and Makefile.
+- [x] User login, creation with JWT Middleware. Blocked at 3 tries with a custom blacklist model.
+- [x] Fully commented functions.
+- [ ] Tests on all functions.
+- [ ] Voting system.
+- [ ] Deleting and modifying users.
+
+
 There are the commands to setup your environment efficiently :
 
 ```bash
