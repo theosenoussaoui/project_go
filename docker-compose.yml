@@ -1,17 +1,6 @@
 version: "3"
 
 services:
-    app:
-        build:
-            context: ./back/
-            dockerfile: Dockerfile
-        ports:
-            - "8080:8080"
-        restart: unless-stopped
-        depends_on:
-            - db
-        networks:
-            - backend
     db:
         image: postgres:11
         volumes:
@@ -37,6 +26,18 @@ services:
       image: 'adminer:latest'
       ports:
           - '8081:8080'
+
+    app:
+        build:
+            context: ./back/
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"
+        restart: unless-stopped
+        depends_on:
+            - db
+        networks:
+            - backend
           
 networks:
     backend:
