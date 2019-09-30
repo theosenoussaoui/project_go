@@ -2,9 +2,4 @@ vendor/
 vendor-*
 db-data/
 front/node_modules/
-<<<<<<< HEAD
 front/
-=======
-back/src/
-back/pkg/
->>>>>>> 57b3d25dce5e1fad5897c253004a09d67b5d9692
