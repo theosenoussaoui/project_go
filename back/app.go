@@ -1,44 +1,54 @@
 package main
 
-// import (
-//     "net/http"
-//     "log"
-//     "github.com/gorilla/mux"
-// )
+import (
+	"log"
 
-// func YourHandler(w http.ResponseWriter, r *http.Request) {
-//     w.Write([]byte("Gorilla!\n"))
-// }
-
-// func main() {
-//     r := mux.NewRouter()
-//     // Routes consist of a path and a handler function.
-//     r.HandleFunc("/", YourHandler)
-
-//     // Bind to a port and pass our router in
-//     log.Fatal(http.ListenAndServe(":8080", r))
-// }
-
-// Test ajout Gonic
-
-import "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
+	"github.com/theosenoussaoui/project_go/back/controllers"
+	"github.com/theosenoussaoui/project_go/back/db"
+	"github.com/theosenoussaoui/project_go/back/middleware"
+)
 
 func main() {
+	log.Println("Starting server...")
+
+	db.Initialize()
+
+	// Inserting admin in Docker PGSQL
+	db.CreateSystemAdmin()
+
 	r := gin.Default()
-	
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	route := r.Group("/")
 
-	r.POST("/users", UserController.CreateUser)
-	r.PUT("/users/:uuid", UserController.UpdateUser)
-	r.DELETE("/users/:uuid", UserController.DeleteUser)
+	// Manage login : 
+	// Authentificating + generating JWT
 
-	r.POST("/votes", VoteController.CreateVote)
-	r.GET("/votes/:uuid", VoteController.GetVote)
-	r.PUT("/votes/:uuid", VoteController.UpdateVote)
+	authMiddleware, err := middleware.AuthMiddleware()
+	if err != nil {
+		log.Fatal("JWT Error:" + err.Error())
+	}
 
-	r.Run() // listen and serve on 0.0.0.0:8080
+	route.POST("/login", authMiddleware.LoginHandler)
+
+	// Manage protected routes
+	route.Use(authMiddleware.MiddlewareFunc())
+	{
+		// Exposing POST and GET routes for users 
+		users := route.Group("/users")
+		{
+			users.GET("/", controllers.GetUsers)
+			users.POST("/", controllers.CreateUser)
+		}
+
+		// Exposing POST and GET routes 
+		// votes := route.Group("/votes")
+		// {
+		// 	votes.GET("/", controllers.GetVotes)
+		// 	votes.POST("/", controllers.CreateVote)
+		// }
+	}
+
+	// Run on port 8080
+
+	r.Run(":8080")
 }

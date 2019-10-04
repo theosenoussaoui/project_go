@@ -1,15 +1,15 @@
-module github.com/theosenoussaoui/go_project
+module github.com/theosenoussaoui/project_go/back
 
 require (
-	github.com/gin-contrib/sse v0.1.0 // indirect
+	github.com/appleboy/gin-jwt/v2 v2.6.2
+	github.com/asaskevich/govalidator v0.0.0-20190424111038-f61b66f89f4a // indirect
 	github.com/gin-gonic/gin v1.4.0
-	github.com/golang/protobuf v1.3.2 // indirect
-	github.com/gorilla/context v1.1.1 // indirect
-	github.com/gorilla/mux v1.6.2
-	github.com/json-iterator/go v1.1.7 // indirect
-	github.com/mattn/go-isatty v0.0.9 // indirect
-	github.com/ugorji/go v1.1.7 // indirect
-	golang.org/x/sys v0.0.0-20190916202348-b4ddaad3f8a3 // indirect
+	github.com/gorilla/mux v1.7.2
+	github.com/jinzhu/gorm v1.9.10
+	github.com/joho/godotenv v1.3.0
+	github.com/qor/validations v0.0.0-20171228122639-f364bca61b46
+	github.com/satori/go.uuid v1.2.0
+	golang.org/x/crypto v0.0.0-20190325154230-a5d413f7728c
 )
 
 go 1.13

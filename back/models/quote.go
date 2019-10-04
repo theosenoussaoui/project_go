@@ -1,4 +1,4 @@
-package model
+package models
 
 type QuoteData struct {
 	Id         string   `json:"id"`
