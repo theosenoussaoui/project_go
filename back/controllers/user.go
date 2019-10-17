@@ -76,6 +76,15 @@ func UpdateUser(c *gin.Context) {
 		return
 	}
 	c.BindJSON(&user)
-	db.Save(&user)
+	db.Save(&user)L
 	c.JSON(http.StatusOK, &user)
+}
+
+// Deleting User u [WIP]
+func DeleteUser(c *gin.Context) {
+	uuid := c.Params.ByName("uuid")
+	var user models.User
+	db := db.GetDB()
+	if uuid != "" {
+	}
 }
