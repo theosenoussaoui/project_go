@@ -33,19 +33,21 @@ func main() {
 	// Manage protected routes
 	route.Use(authMiddleware.MiddlewareFunc())
 	{
-		// Exposing POST and GET routes for users 
 		users := route.Group("/users")
 		{
 			users.GET("/", controllers.GetUsers)
 			users.POST("/", controllers.CreateUser)
+			users.PUT("/:uuid", controllers.UpdateUser)
+			users.DELETE("/:uuid", controllers.DeleteUser)
 		}
 
-		// Exposing POST and GET routes 
-		// votes := route.Group("/votes")
-		// {
-		// 	votes.GET("/", controllers.GetVotes)
-		// 	votes.POST("/", controllers.CreateVote)
-		// }
+		votes := route.Group("/votes")
+		{
+			votes.GET("/", controllers.GetVotes)
+			votes.POST("/", controllers.CreateVote)
+			votes.PUT("/:uuid", controllers.UpdateVote)
+			// votes.DELETE("/:uuid", controllers.DeleteVote)
+		}
 	}
 
 	// Run on port 8080
