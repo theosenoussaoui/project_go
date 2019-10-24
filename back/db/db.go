@@ -33,7 +33,7 @@ func Initialize() {
 	user := os.Getenv("DB_USER")
 	password := os.Getenv("DB_PWRD")
 
-	dbinfo := fmt.Sprintf("user=%s password=%s host=%s port=%s dbname=%s sslmode=disabled",
+	dbinfo := fmt.Sprintf("user=%s password=%s host=%s port=%s dbname=%s sslmode=disable",
 		user,
 		password,
 		host,
