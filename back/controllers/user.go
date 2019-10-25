@@ -11,6 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+
 // GetUsers g
 func GetUsers(c *gin.Context) {
 	var users []models.User
@@ -67,15 +68,70 @@ func CreateUser(c *gin.Context) {
 
 // UpdateUser u
 func UpdateUser(c *gin.Context) {
-	id := c.Param("id")
+	uuid := c.Param("uuid")
 	var user models.User
 
 	db := db.GetDB()
-	if err := db.Where("id = ?", id).First(&user).Error; err != nil {
+	if err := db.Where("uuid = ?", uuid).First(&user).Error; err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 		return
 	}
-	c.BindJSON(&user)
-	db.Save(&user)
-	c.JSON(http.StatusOK, &user)
+	db.Where("uuid = ?", uuid)
+
+	if user.ID != 0 {
+
+		jwtClaims := jwt.ExtractClaims(c)
+		authUserAccessLevel := jwtClaims["access_level"].(float64)
+		authUserUUID := jwtClaims["uuid"].(string)
+		if authUserAccessLevel != 1 {
+			if authUserUUID != uuid {
+				c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+					"error": "Sorry but you can't Update, ONLY admin user can",
+				})
+				return
+			}
+		}
+
+		var newUser models.User
+		c.Bind(&newUser)
+
+		// Update multiple attributes with `struct`, will only update those changed
+		result := db.Model(&user).Update(map[string]interface{}{"first_name": newUser.FirstName, "last_name": newUser.LastName, "email": newUser.Email, "pass": newUser.Password})
+		// Display modified data in JSON message "success"
+		c.JSON(200, gin.H{"success": result})
+
+	}
+
+}
+
+// DeleteUser delete specific user
+func DeleteUser(c *gin.Context) {
+	uuid := c.Params.ByName("uuid")
+	var user models.User
+	db := db.GetDB()
+	if uuid != "" {
+
+		jwtClaims := jwt.ExtractClaims(c)
+		authUserAccessLevel := jwtClaims["access_level"].(float64)
+		authUserUUID := jwtClaims["uuid"].(string)
+		if authUserAccessLevel != 1 {
+			if authUserUUID != uuid {
+				c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+					"error": "Sorry but you can't Delete, ONLY admin user can",
+				})
+				return
+			}
+
+		}
+		// DELETE FROM users WHERE uuid= user.uuid
+		// exemple : UPDATE users SET deleted_at=date.now WHERE uuid = user.uuid;
+		db.Where("uuid = ?", uuid).Delete(&user)
+
+		// Display JSON result
+		c.JSON(200, gin.H{"success": "User #" + uuid + " deleted"})
+	} else {
+		// Display JSON error
+		c.JSON(404, gin.H{"error": "User not found"})
+	}
+
 }

@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "74c65b45-3205-4fe0-9b71-85757d4fd076",
+		"name": "Golang Soutenance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"first_name\":\"zeejiiqsd\",\n\t \"last_name\":\"sasasasdfq\",\n\t \"email\":\"test@test.fr\",\n\t \"pass\":\"jifjijifedzz\",\n\t \"birth_date\":\"12-10-2001\",\n\t \"access_level\": \"0\"\n}\n"
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"sidiki@gmail.com\"\n}\n"
+				},
+				"url": {
+					"raw": "{{url}}/users/d8425b90-226a-4e56-828f-dfcdfdbdd0c1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"d8425b90-226a-4e56-828f-dfcdfdbdd0c1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/users/d8425b90-226a-4e56-828f-dfcdfdbdd0c1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"d8425b90-226a-4e56-828f-dfcdfdbdd0c1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@gmail.com\",\n    \"password\": \"test\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Vote",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"title\":\"createvote\",\n \"desc\":\"description\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/votes",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"votes"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Vote",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/votes/03d243a9-4616-49d0-a7d5-9cd8627cef1b",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"votes",
+						"03d243a9-4616-49d0-a7d5-9cd8627cef1b"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edition Vote",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"fsdfqs\",\n\t\"start_date\":\"10-09-2019\",\n\t\"end_date\":\"20-09-2019\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/votes/1e5142a6-314c-4a17-ba4a-e343c7a81e3d",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"votes",
+						"1e5142a6-314c-4a17-ba4a-e343c7a81e3d"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a98bf897-3f86-4fe9-ac08-55eec212fe79",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b3752e45-0f64-48d5-b93e-d4b9d17e7321",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "afb0efb1-5dd9-4418-a0eb-855940ee34c0",
+			"key": "url",
+			"value": "localhost:8080",
+			"type": "string"
+		},
+		{
+			"id": "71a67933-ecdc-4beb-b620-17893fe40521",
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NfbGV2ZWwiOjEsImV4cCI6MTU3MTk1ODc3MCwib3JpZ19pYXQiOjE1NzE5NTUxNzAsInV1aWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifQ.yR5v2l3HIznnuBajxOM99q-bsuHqZM07bmC37DBBXmw",
+			"type": "string"
+		},
+		{
+			"id": "9a25bba1-6b8d-434c-a2a4-b17a17881e75",
+			"key": "uuid_user",
+			"value": "ff4c14d5-163a-4ca9-82e2-ee398bfd8893",
+			"type": "string"
+		},
+		{
+			"id": "91a0a9b1-dfcc-48fd-98f6-acecf7430b8d",
+			"key": "uuid_vote",
+			"value": "39426cbd-7ea4-43b3-b488-732550f392d4",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
