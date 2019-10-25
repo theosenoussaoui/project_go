@@ -7,12 +7,14 @@ services:
             - ./db-data:/var/lib/postgresql/data:rw
         ports:
             - "5432:5432"
+        restart: always
         environment:
             - POSTGRES_DB=docker
             - POSTGRES_USER=docker
             - POSTGRES_PASSWORD=s3cr3t
-        networks: 
+        networks:
             - backend
+
     # front:
     #     container_name: vuejs-front
     #     image: node:10-alpine
@@ -22,10 +24,6 @@ services:
     #     ports:
     #         - "8081:8081"
     #     command: ["yarn", "serve"]
-    adminer:
-      image: 'adminer:latest'
-      ports:
-          - '8081:8080'
 
     app:
         build:
@@ -38,6 +36,14 @@ services:
             - db
         networks:
             - backend
-          
+
+    adminer:
+        image: "adminer:latest"
+        ports:
+            - "8081:8080"
+        restart: always
+        depends_on:
+            - db
+
 networks:
     backend:
