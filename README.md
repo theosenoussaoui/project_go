@@ -1,40 +1,20 @@
-# Go x VueJS
+# Go & VueJS voting application
 
-- [x] Valid Dockerfiles / Docker-Compose and Makefile.
-- [x] User login, creation with JWT Middleware. Blocked at 3 tries with a custom blacklist model.
-- [x] Fully commented functions.
-- [ ] Tests on all functions.
-- [ ] Voting system.
-- [ ] DELETE and PUT methods for users.
+Note exclusively for the Golang project (will be removed in the future) :
+
+-   [x] Valid Dockerfiles / Docker-Compose and Makefile.
+-   [x] User login, creation with JWT Middleware. Blocked at 3 tries with a custom blacklist model.
+-   [x] Fully commented functions.
+-   [x] Voting system.
+-   [x] DELETE and PUT methods for users.
+-   [ ] Tests on all functions.
 
 There are the commands to setup your environment efficiently :
 
 ```bash
 make install
 ```
-yarn install
-```
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+After that, you can see and test your fully functional API on `localhost:8080`.
 
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-```bash
-make up
-```
+You can also get our `Postman` Collection [here](https://github.com/theosenoussaoui/project_go/blob/dev/back/postman/Golang Soutenance.postman_collection.json). Be careful as you have to initialize all your variables in Postman.
