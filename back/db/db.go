@@ -66,9 +66,30 @@ func Initialize() {
 		}
 	}
 
-	// Run migrations (models and field changes)
+		// Vote Table
+		if !db.HasTable(&models.Vote{}) {
+			err := db.CreateTable(&models.Vote{})
+			if err != nil {
+				log.Println("Table Votes already exists.")
+			} else {
+				log.Println("Table Votes was successfully created.")
+			}
+		}
+	
+		// Blacklist Table
+		if !db.HasTable(&models.Blacklist{}) {
+			err := db.CreateTable(&models.Blacklist{})
+			if err != nil {
+				log.Println("Table Blacklist already exists.")
+			} else {
+				log.Println("Table Blacklist was successfully created.")
+			}
+		}
 
-	db.AutoMigrate(&models.User{})
+		// Run migrations (models and field changes)
+		db.AutoMigrate(&models.User{})
+		db.AutoMigrate(&models.Vote{})
+		db.AutoMigrate(&models.Blacklist{})
 }
 
 // Creating administrator based on the User model 
