@@ -17,4 +17,4 @@ make install
 
 After that, you can see and test your fully functional API on `localhost:8080`.
 
-You can also get our `Postman` Collection [here](https://github.com/theosenoussaoui/project_go/blob/dev/back/postman/Golang Soutenance.postman_collection.json). Be careful as you have to initialize all your variables in Postman.
+You can also get our `Postman` Collection [here](https://github.com/theosenoussaoui/project_go/blob/dev/back/postman/Golang%20Soutenance.postman_collection.json). Be careful as you have to initialize all your variables in Postman.
