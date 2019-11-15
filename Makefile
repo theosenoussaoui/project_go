@@ -1,9 +1,5 @@
 install: clean-front up 
 
-front:
-	cd front && \
-	yarn install
-
 down:
 	docker-compose down
 
