@@ -15,15 +15,15 @@ services:
         networks:
             - backend
 
-    # front:
-    #     container_name: vuejs-front
-    #     image: node:10-alpine
-    #     working_dir: /home/myproject/front
-    #     volumes:
-    #         - ./front:/home/myproject/front
-    #     ports:
-    #         - "8081:8081"
-    #     command: ["yarn", "serve"]
+    front:
+        container_name: vuejs-front
+        image: node:10-alpine
+        working_dir: /home/myproject/front
+        volumes:
+            - ./front:/home/myproject/front
+        ports:
+            - "8081:8080"
+        command: ["yarn", "serve"]
 
     app:
         build:
@@ -40,7 +40,7 @@ services:
     adminer:
         image: "adminer:latest"
         ports:
-            - "8081:8080"
+            - "8888:8080"
         restart: always
         depends_on:
             - db
