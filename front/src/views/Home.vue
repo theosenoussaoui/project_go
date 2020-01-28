@@ -11,8 +11,20 @@ import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "home",
+  data: () => ({
+    votes: null
+  }),
   components: {
     HelloWorld
+  },
+  beforeMount() {
+    this.fetchVotes();
+  },
+  methods: {
+    fetchVotes: async function() {
+      const response    = await fetch("localhost:8080/votes");
+      this.votes        = response;
+    }
   }
 };
 </script>
