@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     fetchVotes: async function() {
-      const response    = await fetch("localhost:8080/votes");
+      const response    = await fetch("http://localhost:8080/votes");
       this.votes        = response;
     }
   }
