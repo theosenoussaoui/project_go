@@ -1,7 +1,8 @@
 <template>
-  <form @submit="submitForm">
+  <!-- <form @submit="submitForm"> -->
+  <form>
     <slot></slot>
-    <el-button type="primary" @click.prevent="submitForm">Valider</el-button>
+    <!-- <el-button type="primary" @click.prevent="submitForm">Valider</el-button> -->
   </form>
 </template>
 
@@ -19,11 +20,11 @@ export default {
     };
   },
   methods: {
-    submitForm: function() {
-      this.$emit("onSubmit", this.values);
-      console.log(Object.keys(this.values).length);
-      alert("form submitted");
-    },
+    // submitForm: function() {
+    //   this.$emit("onSubmit", this.values);
+    //   console.log(Object.keys(this.values).length);
+    //   alert("form submitted");
+    // },
     setValue: function(name, value) {
       this.values[name] = value;
     }
