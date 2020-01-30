@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -13,16 +14,20 @@ func main() {
 	log.Println("Starting server...")
 
 	db.Initialize()
-
-	// Inserting admin in Docker PGSQL
 	db.CreateSystemAdmin()
 
+	r := setupRouter()
+
+	r.Run(":8080")
+}
+
+func setupRouter() *gin.Engine {
 	r := gin.Default()
+	r.Use(CORSMiddleware())
+
 	route := r.Group("/")
 
-	// Manage login : 
-	// Authentificating + generating JWT
-
+	// Manage login (auth + generate JWT)
 	authMiddleware, err := middleware.AuthMiddleware()
 	if err != nil {
 		log.Fatal("JWT Error:" + err.Error())
@@ -39,6 +44,7 @@ func main() {
 			users.POST("/", controllers.CreateUser)
 			users.PUT("/:uuid", controllers.UpdateUser)
 			users.DELETE("/:uuid", controllers.DeleteUser)
+
 		}
 
 		votes := route.Group("/votes")
@@ -46,11 +52,27 @@ func main() {
 			votes.GET("/", controllers.GetVotes)
 			votes.POST("/", controllers.CreateVote)
 			votes.PUT("/:uuid", controllers.UpdateVote)
-			// votes.DELETE("/:uuid", controllers.DeleteVote)
+
 		}
 	}
+	return r
+}
 
-	// Run on port 8080
-
-	r.Run(":8080")
+// CORSMiddleware rules for Cross Domain
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Max-Age", "86400")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, UPDATE")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Access-Control-Allow-Origin, Origin, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+		c.Writer.Header().Set("Access-Control-Expose-Headers", "Content-Length")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		fmt.Println(c.Request.Method)
+		if c.Request.Method == "OPTIONS" {
+			fmt.Println("OPTIONS")
+			c.AbortWithStatus(200)
+		} else {
+			c.Next()
+		}
+	}
 }
